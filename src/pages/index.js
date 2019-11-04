@@ -130,7 +130,7 @@ export default function() {
 
           <div className="bottom-icons">
             <div className="bottom-icon-item">
-              <a href="/about"><i className="iconfont icon-about" /></a>
+              <a href="#/about"><i className="iconfont icon-about" /></a>
             </div>
             <div className="bottom-icon-item">
               <i className="iconfont icon-download" onClick={() => updateDownModal('show', true)} />

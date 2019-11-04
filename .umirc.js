@@ -2,6 +2,7 @@
 // ref: https://umijs.org/config/
 export default {
   treeShaking: true,
+  history: 'hash',
   cssLoaderOptions:{
     localIdentName:'[local]'
   },
