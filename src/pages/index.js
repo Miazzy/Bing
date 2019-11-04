@@ -6,7 +6,7 @@ import { getQueryFromUrl } from '@/util/stringHelper';
 import download from '@/util/download';
 import './index.scss';
 
-let init = false;
+let isQuery = false;
 const queryDate = getQueryFromUrl('date');
 
 export default function() {
@@ -32,6 +32,8 @@ export default function() {
 
     setImgList(imgList.sort((a, b) => a.date - b.date));
     const imgObj = imgList.find((o) => o.date === Number(val));
+
+    isQuery = false;
 
     // 如果有这一天的数据
     if (imgObj)
@@ -64,14 +66,14 @@ export default function() {
     setDownModal(obj)
   };
 
-  // 初始化
-  if (!init) {
-    init = true;
-    updateDate(queryDate || undefined);
-  }
-
   // 当前图片在图片list 中的位置
   const index = imgList.findIndex((o) => o.date === img.date);
+
+  // 初始化
+  if (imgList.length === 0 && !isQuery) {
+    isQuery = true;
+    updateDate(queryDate || undefined);
+  }
   // 位置更新
   const changePosition = (i) => updateDate(imgList[i].date);
 
