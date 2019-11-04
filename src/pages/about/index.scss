@@ -1,0 +1,35 @@
+.about-page {
+  width: 80vw;
+  margin: 30px auto;
+  color: #666 !important;
+  padding: 20px;
+  border-radius: 15px;
+  background: #0001;
+
+  a {
+    color: #666;
+  }
+
+  .icon-github {
+    font-size: 20px;
+    margin-left: 10px;
+  }
+
+  p {
+    width: 70vw;
+    margin: 20px 0;
+    word-break: break-all;
+
+    a {
+      color: #3089dc;
+    }
+  }
+
+  .img-pay {
+    display: inline-block;
+    vertical-align: top;
+    width: 130px;
+    margin-right: 20px;
+    margin-top: 12px;
+  }
+}

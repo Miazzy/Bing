@@ -2,15 +2,9 @@
 // ref: https://umijs.org/config/
 export default {
   treeShaking: true,
-  routes: [
-    {
-      path: '/',
-      component: '../layouts/index',
-      routes: [
-        { path: '/', component: '../pages/index' }
-      ]
-    }
-  ],
+  cssLoaderOptions:{
+    localIdentName:'[local]'
+  },
   plugins: [
     // ref: https://umijs.org/plugin/umi-plugin-react.html
     ['umi-plugin-react', {
@@ -19,7 +13,7 @@ export default {
       dynamicImport: false,
       title: 'bing',
       dll: false,
-      
+
       routes: {
         exclude: [
           /models\//,

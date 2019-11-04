@@ -4,7 +4,7 @@ import { Icon, message, Modal, Radio, Button } from 'antd';
 import request from '@/util/request';
 import { getQueryFromUrl } from '@/util/stringHelper';
 import download from '@/util/download';
-import styles from './index.css';
+import './index.scss';
 
 let init = false;
 const queryDate = getQueryFromUrl('date');
@@ -75,6 +75,7 @@ export default function() {
   // 位置更新
   const changePosition = (i) => updateDate(imgList[i].date);
 
+  // 切换时间
   window.onkeydown = ({ keyCode }) => {
     switch (keyCode) {
       case 37:
@@ -96,43 +97,46 @@ export default function() {
   const imgDate = moment(img.date, 'YYYYMMDD');
 
   return (
-    <div className={styles['img-container']}>
+    <div className="img-container">
       { img.date && (
-        <div className={styles['img-content-box']}>
-          <div className={styles['img-content']}>
-            <img className={styles['img-pic']} src={`//cn.bing.com${img.url}`}/>
+        <div className="img-content-box">
+          <div className="img-content">
+            <img className="img-pic" src={`//cn.bing.com${img.url}`}/>
           </div>
-          <div className={styles['img-info']}>
-            <div className={styles['img-date']}>
-              <div className={styles['img-date-year']}>{imgDate.format('YY')}</div>
-              <div className={styles['img-date-md']}>
+          <div className="img-info">
+            <div className="img-date">
+              <div className="img-date-year">{imgDate.format('YY')}</div>
+              <div className="img-date-md">
                 <div>{imgDate.format('MM')}</div>
                 <div>{imgDate.format('DD')}</div>
               </div>
             </div>
-            <div className={styles['img-cp']}><div className={styles['img-cp-txt']}>{img.cp}</div></div>
+            <div className="img-cp"><div className="img-cp-txt">{img.cp}</div></div>
           </div>
 
           {/* 上一页、下一页 */}
           {
             index !== 0 &&
-            <div className={styles['icon-left']} onClick={() => changePosition(index - 1)}>
+            <div className="page-icon icon-left" onClick={() => changePosition(index - 1)}>
               <Icon type="left" />
             </div>
           }
           {
             index !== (imgList.length - 1) &&
-            <div className={styles['icon-right']} onClick={() => changePosition(index + 1)}>
+            <div className="page-icon icon-right" onClick={() => changePosition(index + 1)}>
               <Icon type="right" />
             </div>
           }
 
-          <div className={styles['bottom-icons']}>
-            <div className={styles['bottom-icon-item']}>
-              <i className="iconfont icon-about"></i>
+          <div className="bottom-icons">
+            <div className="bottom-icon-item">
+              <a href="/about"><i className="iconfont icon-about" /></a>
             </div>
-            <div className={styles['bottom-icon-item']}>
-              <i className="iconfont icon-download" onClick={() => updateDownModal('show', true)}></i>
+            <div className="bottom-icon-item">
+              <i className="iconfont icon-download" onClick={() => updateDownModal('show', true)} />
+            </div>
+            <div className="bottom-icon-item">
+              <a target="_blank" href="https://github.com/jsososo/Bing"><i className="iconfont icon-github" /></a>
             </div>
           </div>
         </div>
@@ -141,15 +145,15 @@ export default function() {
       <Modal
         visible={downModal.show}
         footer={false}
-        width={700}
+        className="down-img-modal"
         onCancel={() => updateDownModal('show', false)}
       >
         <div>
-          <div className={styles['down-img-container']}>
+          <div className="down-img-container">
             <img src={`//cn.bing.com${img.urlbase}_${downModal.size}.jpg`} alt=""/>
           </div>
           <div className="size-select-container">
-            <div className={styles['size-select']}>
+            <div className="size-select">
               <i
                 className="iconfont icon-pc"
                 style={{ color: {pc: '#3089dc', mobile: '#999'}[downModal.type] }}
@@ -168,7 +172,7 @@ export default function() {
                 <Radio.Button value="1024x768">1024x768</Radio.Button>
               </Radio.Group>
             </div>
-            <div className={styles['size-select']}>
+            <div className="size-select">
               <i
                 className="iconfont icon-mobile"
                 style={{ color: {mobile: '#3089dc', pc: '#999'}[downModal.type] }}
